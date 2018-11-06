@@ -12,9 +12,9 @@ class MixResolver
         $this->enabled = $enabled;
     }
 
-    public function __invoke(string $identifier) : string
+    public function __invoke(string $identifier, bool $is_mix = true) : string
     {
-        if (! $this->enabled) {
+        if (! $this->enabled || ! $is_mix) {
             return $identifier;
         }
 
