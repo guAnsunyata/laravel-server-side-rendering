@@ -29,7 +29,8 @@ class SsrServiceProvider extends ServiceProvider
         $this->app->singleton(Node::class, function () {
             return new Node(
                 $this->app->config->get('ssr.node.node_path'),
-                $this->app->config->get('ssr.node.temp_path')
+                $this->app->config->get('ssr.node.temp_path'),
+                $this->app->config->get('ssr.ssr_error_signature')
             );
         });
 
@@ -50,6 +51,7 @@ class SsrServiceProvider extends ServiceProvider
                     ->context('url', $this->app->request->getRequestUri())
                     ->context($this->app->config->get('ssr.context'))
                     ->env($this->app->config->get('ssr.env'))
+                    ->ssrErrorSignature($this->app->config->get('ssr.ssr_error_signature'))
                     ->resolveEntryWith(new MixResolver($this->app->config->get('ssr.mix')));
             }
         );

@@ -42,6 +42,9 @@ return [
      */
     'context' => [],
 
+    /* for recognizing by php bridge caller when there are ssr error during node rendering */
+    'ssr_error_signature' => 'SSR-ERROR-SIGNATURE',
+
     /*
      * Env is used to fill `process.env` when the server script is executed.
      * Fill this array with data you *always* want to send to the server script.
